@@ -11,9 +11,11 @@ public class PlayConnect4 {
 
     Connect4Player red = new RandomPlayer();
     Connect4Player yellow = new KeyboardPlayer();
-    Connect4ConsoleDisplay display = new Connect4ConsoleDisplay(gameState);
+    //Connect4ConsoleDisplay display = new Connect4ConsoleDisplay(gameState);
+    if (args[0].equals("-gui")){
+        Connect4GUI board = new Connect4GUI();
+        board.setVisible(true);
+    }
 
-    Connect4 game = new Connect4(gameState, red, yellow, display);
-    game.play();
   }
 }

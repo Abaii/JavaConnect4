@@ -1,14 +1,23 @@
 package assignment2017;
+import assignment2017.codeprovided.Connect4Displayable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.*;
 import javax.swing.*;
 
-public class Connect4GUI extends JFrame{
+public class Connect4GUI extends JFrame implements ActionListener,
+                                                    Connect4Displayable{
     public Connect4GUI(){
       setTitle("Connect 4 main menu");
       //add buttons
       JButton buttons = new JButton();
       buttons.setLayout(new BorderLayout());
-      buttons.add(new JButton("Enter Game"));
+      JButton button = new JButton("Enter Game");
+      buttons.add(new JButton("Human player"));
+      buttons.add(new JButton("AI "));
+      buttons.add(new JButton("Random"));
+      //add event listener
+      button.addActionListener(this);
       //add labels
       JPanel labels = new JPanel();
       labels.setLayout(new BorderLayout());
@@ -18,7 +27,7 @@ public class Connect4GUI extends JFrame{
       //border layout position the enter button north east south and west
       Container contentPane = getContentPane();
       contentPane.setLayout(new BorderLayout());
-      contentPane.add(buttons, BorderLayout.SOUTH);
+      contentPane.add(button, BorderLayout.SOUTH);
       contentPane.add(labels, BorderLayout.EAST);
 
 
@@ -30,9 +39,17 @@ public class Connect4GUI extends JFrame{
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
-    public static void main(String[] args){
-      Connect4GUI board = new Connect4GUI();
-      board.setVisible(true);
+    /**
+    * Closes main menu and opens the game menu
+    */
+    @Override
+    public void actionPerformed(ActionEvent e){
+      GameScreen screen = new GameScreen();
+      screen.setVisible(true);
+      this.setVisible(false);
+    }
+    public void displayBoard(){
+
     }
 
 }
